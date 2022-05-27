@@ -6,12 +6,13 @@ public class Person {
     protected int age;
     private String address;
 
-    Person(PersonBuilder personBuilder){
+    Person(PersonBuilder personBuilder) {
         name = personBuilder.name;
         surname = personBuilder.surname;
         age = personBuilder.age;
         address = personBuilder.address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -39,12 +40,12 @@ public class Person {
         this.address = address;
     }
 
-    public Person (String name, String surname) {
+    public Person(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }
 
-    public Person (String name, String surname, int age) {
+    public Person(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -60,7 +61,7 @@ public class Person {
     }
 
     public void happyBirthday() {
-        age =+ 1;
+        age += 1;
     }
 
     @Override
@@ -72,8 +73,12 @@ public class Person {
                 ", address='" + address + '\'' +
                 '}';
     }
-    public PersonBuilder newChildPerson (){
-        PersonBuilder child = new PersonBuilder().build();
+
+    public PersonBuilder newChildPerson() {
+        PersonBuilder child = new PersonBuilder()
+                .setSurname(surname)
+                .setAge(13)
+                .setAddress(address);
         return child;
     }
 }

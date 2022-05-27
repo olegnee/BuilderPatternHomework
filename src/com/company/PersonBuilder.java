@@ -6,23 +6,34 @@ public class PersonBuilder {
     protected int age;
     protected String address;
 
-    public PersonBuilder() {
-
-    }
-
-    public PersonBuilder setName (String name) {
-        this.name = name;
+    public PersonBuilder setName(String name) {
+        try{
+            this.name = name;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Sorry, but Persons cannot be created without required information.");
+            e.printStackTrace();
+        }
         return this;
     }
 
     public PersonBuilder setSurname(String surname) {
-        this.surname = surname;
+        try{
+            this.surname = surname;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Sorry, but Persons cannot be created without required information.");
+            e.printStackTrace();
+        }
         return this;
     }
 
     public PersonBuilder setAge(int age) {
-        this.age = age;
-        return this;
+        if (age <= 0) {
+            throw new IllegalArgumentException ("Age is wrong!");
+        }
+        else {
+            this.age = age;
+            return this;
+        }
     }
 
     public PersonBuilder setAddress(String address) {
