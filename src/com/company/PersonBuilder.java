@@ -7,21 +7,21 @@ public class PersonBuilder {
     protected String address;
 
     public PersonBuilder setName(String name) {
-        try{
-            this.name = name;
-        } catch (IllegalArgumentException e) {
+        if (name == null) {
             System.out.println("Sorry, but Persons cannot be created without required information.");
-            e.printStackTrace();
+        }
+        else {
+            this.name = name;
         }
         return this;
     }
 
     public PersonBuilder setSurname(String surname) {
-        try{
-            this.surname = surname;
-        } catch (IllegalArgumentException e) {
+        if (name == null) {
             System.out.println("Sorry, but Persons cannot be created without required information.");
-            e.printStackTrace();
+        }
+        else {
+            this.surname = surname;
         }
         return this;
     }
@@ -42,11 +42,11 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        Person smn = null;
+        Person smn;
         if (validateReceivedData()) {
             smn = new Person(this);
         } else {
-            System.out.println("Sorry, but Persons cannot be created without required information.");
+            throw new IllegalArgumentException("Sorry, but Persons cannot be created without required information.");
         }
         return smn;
     }
